@@ -16,7 +16,7 @@ int main()
     {
         BeginDrawing();
         ClearBackground(black);
-        DrawFPS(screenWidth-10, screenHeight-10);
+        DrawFPS(0, 0);
         ball.Update(paddle.paddle);
         ball.Draw();
         paddle.Update();
