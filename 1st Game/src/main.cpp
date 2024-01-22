@@ -6,7 +6,7 @@ int main()
     Color black = Color{0, 0, 0, 255};
 
     Ball ball = Ball();
-    Barre barre = Barre();
+    Paddle paddle = Paddle();
 
     InitWindow(screenWidth, screenHeight, "Pong with Raylib, by n3izvn");
     SetTargetFPS(60);
@@ -16,11 +16,11 @@ int main()
     {
         BeginDrawing();
         ClearBackground(black);
-        ball.Update(barre.x, barre.y);
+        DrawFPS(screenWidth-10, screenHeight-10);
+        ball.Update(paddle.paddle);
         ball.Draw();
-        barre.Move();
-        barre.Draw();
-        DrawFPS(0, 0);
+        paddle.Update();
+        paddle.Draw();
         EndDrawing();
     }
 

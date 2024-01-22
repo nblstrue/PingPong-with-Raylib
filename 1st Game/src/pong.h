@@ -1,38 +1,34 @@
 #pragma once
 #include <raylib.h>
 
-const int screenWidth = 1000;
-const int screenHeight = 500;
+const int screenWidth = 800;
+const int screenHeight = 800;
 
-class Barre
+class Paddle
 {
 public:
-    Barre();
-    void Move();
+    Paddle();
+    void Update();
     void Draw();
-    int x;
-    int y;
-    int score;
+    Rectangle paddle;
 
 private:
+    Color color;
     int speedX;
     int speedY;
-    int width;
-    int height;
-    Color colore;
 };
 
 class Ball
 {
 public:
     Ball();
-    void Update(int b_x, int b_y);
+    void Update(Rectangle a);
     void Draw();
-    int speedX;
-    int speedY;
 
 private:
-    int x;
-    int y;
+    Color color;
+    Vector2 ball;
+    int speedX;
+    int speedY;
     int radius;
 };

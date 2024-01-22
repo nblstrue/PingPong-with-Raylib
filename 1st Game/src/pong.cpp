@@ -5,65 +5,70 @@ using namespace std;
 
 Ball::Ball()
 {
-    x = 500;
-    y = 250;
+    ball.x = 425;
+    ball.y = 425;
     speedX = 5;
     speedY = 5;
     radius = 15;
+    color = Color{255, 255, 255, 255};
 }
 
-void Ball::Update(int b_x, int b_y)
+void Ball::Update(Rectangle a)
 {
-    x += speedX;
-    y += speedY;
+    ball.x += speedX;
+    ball.y += speedY;
 
-    if (x + radius >= GetScreenWidth() || x - radius <= 0){
+    if (ball.x + radius >= GetScreenWidth() || ball.x - radius <= 0){
         speedX *= -1;
     }
-    if (y + radius >= GetScreenHeight() || y - radius <= 0){
+    if (ball.y + radius >= GetScreenHeight() || ball.y - radius <= 0){
         speedY *= -1;
+    }
+    if(CheckCollisionCircleRec(ball, radius, a))
+    {
+        speedX *= -1;
     }
 }
 
 void Ball::Draw()
 {
-    DrawCircle(x, y, radius, WHITE);
+    DrawCircle(ball.x, ball.y, radius, color);
 }
 
-Barre::Barre()
+Paddle::Paddle()
 {
-    x = 10;
-    y = 50;
-    speedX = 3;
-    speedY = 3;
-    width = 10;
-    height = 100;
-    colore = Color{255, 255, 0, 255};
+    paddle.height = 100;
+    paddle.width = 10;
+    paddle.x = 10;
+    paddle.y = 400;
+    speedX = 3.5;
+    speedY = 3.5;
+    color = Color{255, 255, 0, 255};
 }
 
-void Barre::Draw()
+void Paddle::Draw()
 {
-    DrawRectangleLines(x, y, width, height, colore);
+    DrawRectangle(paddle.x, paddle.y, paddle.width, paddle.height, color);
 }
 
-void Barre::Move()
+void Paddle::Update()
 {
     if(IsKeyDown(KEY_DOWN))
     {
-       y += speedY;
-       if (y > GetScreenWidth())
-       {
-            y = screenWidth;
-       }
+        paddle.y += speedY;
+        if(paddle.y >= 700)
+        {
+            paddle.y = 700;
+        }
     }
     else
     {
         if(IsKeyDown(KEY_UP))
         {
-            y -= speedY;
-            if (y < 0)
+            paddle.y -= speedY;
+            if(paddle.y < 0)
             {
-                y = 0;
+                paddle.y = 0;
             }
         }
     }
