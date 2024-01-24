@@ -35,18 +35,10 @@ void Ball::Update(Rectangle a, int X, int Y)
     }
     if(CheckCollisionCircleRec(ball, radius, a))
     {
-        if(score > 10)
-        {
-            speedX *= -1;
-            score+=1;
-        }
-        else
-        {
-            speedX*=1.2;
-            speedY*=1.2;
-            speedX *= -1;
-            score+=1;
-        }
+        speedX*=1.2;
+        speedY*=1.2;
+        speedX *= -1;
+        score+=1;
     }
     if(ball.x - radius <= 0)
     {
