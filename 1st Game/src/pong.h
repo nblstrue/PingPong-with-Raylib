@@ -1,8 +1,8 @@
 #pragma once
 #include <raylib.h>
 
-const int screenWidth = 1800;
-const int screenHeight = 305;
+const int screenWidth = 1700;
+const int screenHeight = 700;
 
 class Paddle
 {
@@ -20,7 +20,7 @@ class Ball
 {
 public:
     Ball();
-    void Update(Rectangle a, int X, int Y);
+    void Update(Rectangle a);
     void Draw();
     Color color;
     Vector2 ball;
