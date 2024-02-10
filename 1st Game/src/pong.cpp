@@ -34,7 +34,7 @@ void Ball::Update(Rectangle a)
 
     if(score < 2 && done != 1)
     {
-        DrawText("Stellar Ping Pong 1.4 - Try to hit a score of 100 to win the game !!", 20, 20, 40, LIGHTGRAY);
+        DrawText("Stellar Ping Pong 1.4 - Try to hit a score of 100 to win the game !!", 20, 100, 40, LIGHTGRAY);
         DrawText("Use the UP and DOWN Arrow Keys to control the platform", 20, (screenHeight/2), 20, LIGHTGRAY);
         DrawText("Press ENTER to play the game and press ESC to exit the game", 20, (screenHeight/2)+50, 20, LIGHTGRAY);
         DrawText("Have fun i guess :) ", 20, (screenHeight/2)+100, 20, LIGHTGRAY);

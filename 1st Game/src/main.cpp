@@ -3,7 +3,7 @@
 #include <vector>
 #include <list>
 
-int place = 0, ground = 0, go = 0;
+int place = 0, ground = 0;
 int *p_place = &place, *p_grd = &ground;
 float scol_atm = 0.0f, scol_earth1 = 0.0f, scol_earth2 = 0.0f, scol_space = 0.0f;
 const char* name_music[] = {"Ouranos Island", "Tails Mvt", "Arrow of Time Remix", "Ultra Necrozma Remix", "Egg Reverie Remix"};
