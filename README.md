@@ -19,6 +19,7 @@ If you are interested in this library, join our discord server linked in the off
 
 - Changing musics depending on the score (no way ?!)
 - Changing backgrounds depending on the score
+- Starting window showing you how to control the platform
 
 # Updates for the Version 1.5
 
