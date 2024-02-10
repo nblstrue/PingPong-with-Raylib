@@ -1,6 +1,7 @@
 # Stellar Ping Pong Game
 
 A simple game of ping pong in space (actually that makes no sense but whatever)
+You can find the code itself in the folder "1st Game", or the game itself with songs in the folder "Stellar Pong Game"
 
 # To be able to play this game, you need:
 - RayLib 5.0 (in the C:/ disk) ; ( https://www.raylib.com )
