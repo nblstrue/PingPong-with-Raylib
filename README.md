@@ -8,6 +8,7 @@ A simple game of ping pong in space (actually that makes no sense but whatever)
 - MinGW as the compiler (v6.3.0 of later, and in the C:/ disk)
 
 The configuration to make Raylib 5.0 work with VS Code is already done in the folder, so you don't need to do it youself
+If you are interested in this library, join our discord server linked in the official site.
 
 # Version 1.2 (Mid January 2024): 
 
@@ -23,6 +24,7 @@ The configuration to make Raylib 5.0 work with VS Code is already done in the fo
 
 - Goddamn asteroids !
 - Saving progress and scores
+- Only one background image, but a moving one
 
 # Issues / Future changes
 
