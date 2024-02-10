@@ -17,6 +17,7 @@ The configuration to make Raylib 5.0 work with VS Code is already done in the fo
 # Version 1.3
 
 - Changing musics depending on the score (no way ?!)
+- (It has been 3 versions and we aren't in space yet... That's tragic)
 
 # Updates for the Version 1.5
 
