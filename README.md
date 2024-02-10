@@ -1,14 +1,16 @@
 # Stellar Ping Pong Game
 
-A simple game of ping pong in space (actually that makes no sense but whatever)
-You can find the code itself in the folder "1st Game", or the game itself with songs in the folder "Stellar Pong Game"
+A simple game of ping pong in space (actually that makes no sense but whatever).
+
+You can find the code itself in the folder "1st Game", or the game itself with songs in the folder "Stellar Pong Game".
 
 # To be able to play this game, you need:
 - RayLib 5.0 (in the C:/ disk) ; ( https://www.raylib.com )
 - Visual Studio Code (to change the code or see what it looks like) with the C/C++ extension
 - MinGW as the compiler (v6.3.0 of later, and in the C:/ disk)
 
-The configuration to make Raylib 5.0 work with VS Code is already done in the folder, so you don't need to do it youself
+The configuration to make Raylib 5.0 work with VS Code is already done in the folder, so you don't need to do it youself.
+
 If you are interested in this library, join our discord server linked in the official site.
 
 # Version 1.2 (Mid January 2024): 
