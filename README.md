@@ -14,9 +14,13 @@ The configuration to make Raylib 5.0 work with VS Code is already done in the fo
 - Game ends with a text saying that you beat the game (obtainable with a score of 40)
 - My name on the top right corner :)
 
-# Updates to look forward to in the 1.5 Version:
+# Version 1.3
 
-- Changing music depending on the score
+- Changing musics depending on the score (no way ?!)
+
+# Updates for the Version 1.5
+
+- Changing backgrounds
 - Goddamn asteroids !
 
   Have fun i guess 
