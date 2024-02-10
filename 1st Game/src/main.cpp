@@ -3,7 +3,7 @@
 #include <vector>
 #include <list>
 
-int place = 0, ground = 0;
+int done = 0, place = 4, ground = 0;
 int *p_place = &place, *p_grd = &ground;
 float scol_atm = 0.0f, scol_earth1 = 0.0f, scol_earth2 = 0.0f, scol_space = 0.0f;
 const char* name_music[] = {"Ouranos Island", "Tails Mvt", "Arrow of Time Remix", "Ultra Necrozma Remix", "Egg Reverie Remix"};
@@ -15,12 +15,17 @@ const char* path_music[] = {"src/aud/Ouranos Island.mp3",
                            };
 Ball ball = Ball();
 Paddle paddle = Paddle();
+std::vector<Texture2D> Img;
 std::vector<Music> Playlist;
 Color black = Color{0, 0, 0, 255};
 
+void Img_init(void);
+void Back(int a);
+void UnloadingTextures(void);
 void music_init(void);
 void music_update(int a, int *track, int b);
 void framing(int f);
+void Begin(int a);
 
 int main()
 {
@@ -30,17 +35,20 @@ int main()
     ShowCursor();
     InitAudioDevice();
     music_init();
-    PlayMusicStream(Playlist[0]);
+    Img_init();
+    PlayMusicStream(Playlist[4]);
 
     while (!WindowShouldClose())
     {
         BeginDrawing();
         ClearBackground(black);
+        Back(ball.stats());
         int frames = GetFPS();
         framing(frames);
         ball.Update(paddle.paddle);
         music_update(ball.stats(), p_place, place);
         ball.Draw();
+        Begin(ball.stats());
         paddle.Update();
         paddle.Draw();
         EndDrawing();
@@ -103,7 +111,7 @@ void music_update(int a, int *track, int b)
                     else
                     {
                         UpdateMusicStream(Playlist[b]);
-                        DrawText(TextFormat("Song = %s", name_music[b]), screenWidth-410, 0, 20, LIME);
+                        DrawText(TextFormat("Song = %s", name_music[4]), screenWidth-300, 0, 20, LIME);
                     }
                 }
             }
@@ -122,3 +130,92 @@ void framing(int f)
     if(f >= 45)
         DrawText(TextFormat("%d FPS", f), 20, 0, 20, GREEN);
 }
+
+void Begin(int a)
+{
+    if(a < 2 && done == 0)
+    {
+        DrawText("Stellar Ping Pong 1.4 - Try to hit a score of 100 to win the game !!", 20, 100, 40, LIGHTGRAY);
+        DrawText("Use the UP and DOWN Arrow Keys to control the platform", 20, (screenHeight/2), 20, LIGHTGRAY);
+        DrawText("Press ENTER to play the game and press ESC to exit the game", 20, (screenHeight/2)+50, 20, LIGHTGRAY);
+        DrawText("Have fun i guess :) ", 20, (screenHeight/2)+100, 20, LIGHTGRAY);
+    }
+
+    if(a == 2)
+        done = 1;
+}
+
+void Img_init()
+{
+    Img.push_back(LoadTexture("src/img/1e64c3289a248160c26a3b57b221e282.png"));
+    Img.push_back(LoadTexture("src/img/3CDxl1.png"));
+    Img.push_back(LoadTexture("src/img/2-2-space-free-png-image.png"));
+}
+
+void Back(int a)
+{
+    if(a < 30)
+    {
+        Rectangle Source;
+        Rectangle Destination;
+        Vector2 vct;
+
+        Source.height = 562;
+        Source.width = 1000;
+        Source.x = 0;
+        Source.y = 0;
+
+        Destination.height = 1080;
+        Destination.width = 1920;
+        Destination.x = 0;
+        Destination.y = 0;
+
+        DrawTexturePro(Img[0], Source, Destination, vct, 0.0f, LIGHTGRAY);
+    }
+
+    if(a < 70 && a >= 30)
+    {
+        Rectangle Source;
+        Rectangle Destination;
+        Vector2 vct;
+
+        Source.height = 448;
+        Source.width = 1280;
+        Source.x = 0;
+        Source.y = 0;
+
+        Destination.height = 1080;
+        Destination.width = 1920;
+        Destination.x = 0;
+        Destination.y = 0;
+
+        DrawTexturePro(Img[1], Source, Destination, vct, 0.0f, LIGHTGRAY);
+    }
+
+    if(a >= 70)
+    {
+        Rectangle Source;
+        Rectangle Destination;
+        Vector2 vct;
+
+        Source.height = 1000;
+        Source.width = 1500;
+        Source.x = 0;
+        Source.y = 0;
+
+        Destination.height = 1080;
+        Destination.width = 1920;
+        Destination.x = 0;
+        Destination.y = 0;
+
+        DrawTexturePro(Img[2], Source, Destination, vct, 0.0f, LIGHTGRAY);
+    }
+}
+
+void UnloadingTextures()
+{
+    UnloadTexture(Img[0]);
+    UnloadTexture(Img[1]);
+    UnloadTexture(Img[2]);
+}
+

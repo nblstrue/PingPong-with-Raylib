@@ -1,7 +1,7 @@
 #include <src/pong.h>
 #include <iostream>
 
-int fontsize = 20, score = 0, done = 0;
+int fontsize = 20, score = 0;
 int finish = 0, one = 0, two = 0, three = 0, four = 0;
 const char* p_res;
 
@@ -30,17 +30,8 @@ void Ball::Update(Rectangle a)
     ball.x += speedX;
     ball.y += speedY;
     p_res = TextFormat("Score = %d", score);
-    DrawText("By n3izvn", screenWidth-100, 0, fontsize, SKYBLUE);
+    DrawText("By n3izvn", 20, screenHeight-20, fontsize, SKYBLUE);
 
-    if(score < 2 && done != 1)
-    {
-        DrawText("Stellar Ping Pong 1.4 - Try to hit a score of 100 to win the game !!", 20, 100, 40, LIGHTGRAY);
-        DrawText("Use the UP and DOWN Arrow Keys to control the platform", 20, (screenHeight/2), 20, LIGHTGRAY);
-        DrawText("Press ENTER to play the game and press ESC to exit the game", 20, (screenHeight/2)+50, 20, LIGHTGRAY);
-        DrawText("Have fun i guess :) ", 20, (screenHeight/2)+100, 20, LIGHTGRAY);
-    }
-    if(score == 2)
-        done = 1;
     if (ball.x + radius >= GetScreenWidth()){
         speedX *= -1;
     }
@@ -69,8 +60,8 @@ void Ball::Update(Rectangle a)
     {
         if(one == 0)
         {
-            speedX = 9;
-            speedY = 9;
+            speedX = 10;
+            speedY = 10;
             one = 1;
             two = 0;
             three = 0;
@@ -78,35 +69,35 @@ void Ball::Update(Rectangle a)
             score = 0;
         }
         DrawText(difficulty1, (screenWidth/2)-100, 0, fontsize, GREEN);
-        DrawText(p_res, (screenWidth/2)+80, 0, fontsize, BEIGE);
+        DrawText(p_res, (screenWidth/2)-50, screenHeight-20, fontsize, BEIGE);
     }
     if(score < 30 && score >= 10)
     {
         if(two == 0)
         {
-            speedX = 12;
-            speedY = 12;
+            speedX = 13;
+            speedY = 13;
             one = 0;
             two = 1;
             three = 0;
             four = 0;
         }
-        DrawText(difficulty2, (screenWidth/2)-100, 0, fontsize, YELLOW);
-        DrawText(p_res, (screenWidth/2)+210, 0, fontsize, BEIGE);
+        DrawText(difficulty2, (screenWidth/2)-110, 0, fontsize, YELLOW);
+        DrawText(p_res, (screenWidth/2)-50, screenHeight-20, fontsize, BEIGE);
     }
     if(score < 70 && score >= 30)
     {
         if(three == 0)
         {
-            speedX = 15;
-            speedY = 15;
+            speedX = 16;
+            speedY = 16;
             one = 0;
             two = 0;
             three = 1;
             four = 0;
         }
         DrawText(difficulty3, (screenWidth/2)-100, 0, fontsize, RED);
-        DrawText(p_res, (screenWidth/2)+80, 0, fontsize, BEIGE);
+        DrawText(p_res, (screenWidth/2)-50, screenHeight-20, fontsize, BEIGE);
     }
     if(score < 100 && score >= 70)
     {
@@ -119,8 +110,8 @@ void Ball::Update(Rectangle a)
             three = 0;
             four = 1;
         }
-        DrawText(difficulty4, (screenWidth/2)-100, 0, fontsize, MAGENTA);
-        DrawText(p_res, (screenWidth/2)+290, 0, fontsize, BEIGE);
+        DrawText(difficulty4, (screenWidth/2)-140, 0, fontsize, MAGENTA);
+        DrawText(p_res, (screenWidth/2)-50, screenHeight-20, fontsize, BEIGE);
     }
     if(score >= 100)
     {
@@ -134,9 +125,9 @@ void Ball::Update(Rectangle a)
             speedY = 7;
             finish = 1;
         }
-        DrawText(difficulty4, (screenWidth/2)-100, 0, fontsize, MAGENTA);
-        DrawText(p_res, (screenWidth/2)+290, 0, fontsize, BEIGE);
-        DrawText("Congratulations, you somehow finished the game ! (Progress and Obstacles in developpement...)", 390, 0, fontsize, GOLD);
+        DrawText(difficulty4, (screenWidth/2)-140, 0, fontsize, MAGENTA);
+        DrawText(p_res, (screenWidth/2)-50, screenHeight-20, fontsize, BEIGE);
+        DrawText("Congratulations, you somehow finished the game !", screenWidth-510, screenHeight-20, fontsize, GOLD);
     }
 }
 

@@ -4,7 +4,6 @@
 
 const int screenWidth = 1920;
 const int screenHeight = 1080;
-void Begin(int *a);
 
 class Paddle
 {
