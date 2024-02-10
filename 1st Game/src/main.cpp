@@ -3,7 +3,7 @@
 #include <vector>
 #include <list>
 
-int done = 0, place = 4, ground = 0;
+int place = 0, ground = 0;
 int *p_place = &place, *p_grd = &ground;
 float scol_atm = 0.0f, scol_earth1 = 0.0f, scol_earth2 = 0.0f, scol_space = 0.0f;
 const char* name_music[] = {"Ouranos Island", "Tails Mvt", "Arrow of Time Remix", "Ultra Necrozma Remix", "Egg Reverie Remix"};
@@ -25,7 +25,7 @@ void UnloadingTextures(void);
 void music_init(void);
 void music_update(int a, int *track, int b);
 void framing(int f);
-void Begin(int a);
+void Begin(void);
 
 int main()
 {
@@ -36,19 +36,19 @@ int main()
     InitAudioDevice();
     music_init();
     Img_init();
-    PlayMusicStream(Playlist[4]);
+    PlayMusicStream(Playlist[0]);
+    Begin();
 
     while (!WindowShouldClose())
     {
         BeginDrawing();
         ClearBackground(black);
-        Back(ball.stats());
+        //Back(ball.stats());
         int frames = GetFPS();
         framing(frames);
         ball.Update(paddle.paddle);
         music_update(ball.stats(), p_place, place);
         ball.Draw();
-        Begin(ball.stats());
         paddle.Update();
         paddle.Draw();
         EndDrawing();
@@ -111,7 +111,7 @@ void music_update(int a, int *track, int b)
                     else
                     {
                         UpdateMusicStream(Playlist[b]);
-                        DrawText(TextFormat("Song = %s", name_music[4]), screenWidth-300, 0, 20, LIME);
+                        DrawText(TextFormat("Song = %s", name_music[b]), screenWidth-300, 0, 20, LIME);
                     }
                 }
             }
@@ -131,18 +131,31 @@ void framing(int f)
         DrawText(TextFormat("%d FPS", f), 20, 0, 20, GREEN);
 }
 
-void Begin(int a)
+void Begin()
 {
-    if(a < 2 && done == 0)
+    while(!IsKeyPressed(KEY_ENTER))
     {
-        DrawText("Stellar Ping Pong 1.4 - Try to hit a score of 100 to win the game !!", 20, 100, 40, LIGHTGRAY);
-        DrawText("Use the UP and DOWN Arrow Keys to control the platform", 20, (screenHeight/2), 20, LIGHTGRAY);
-        DrawText("Press ENTER to play the game and press ESC to exit the game", 20, (screenHeight/2)+50, 20, LIGHTGRAY);
-        DrawText("Have fun i guess :) ", 20, (screenHeight/2)+100, 20, LIGHTGRAY);
-    }
+        UpdateMusicStream(Playlist[0]);
+        BeginDrawing();
+        ClearBackground(black);
+        DrawText("Stellar Ping Pong 1.4 - By n3izvn", 200, 100, 40, RED);
+        DrawText("Try to hit a score of 100 to win the game !!", 200, 160, 40, YELLOW);
+        DrawText("Use the UP and DOWN Arrow Keys to control the platform", 200, (screenHeight/2), 20, GREEN);
+        DrawText("Press ENTER to play the game and press ESC to exit the game", 200, (screenHeight/2)+50, 20, PURPLE);
+        DrawText("Have fun i guess :) ", 200, (screenHeight/2)+100, 20, BLUE);
+        paddle.Update();
+        paddle.Draw();
 
-    if(a == 2)
-        done = 1;
+        if(IsKeyPressed(KEY_ESCAPE))
+        {
+            EndDrawing();
+            CloseWindow();
+            CloseAudioDevice();
+            exit(0);
+        }
+
+        EndDrawing();
+    }
 }
 
 void Img_init()
