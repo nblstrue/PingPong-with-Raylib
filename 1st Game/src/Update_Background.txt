@@ -1,0 +1,79 @@
+std::vector<Texture2D> Img;
+
+void Img_init(void);
+void Back(int a);
+void UnloadingTextures(void);
+
+void Img_init()
+{
+    Img.push_back(LoadTexture("src/img/1e64c3289a248160c26a3b57b221e282.png"));
+    Img.push_back(LoadTexture("src/img/3CDxl1.png"));
+    Img.push_back(LoadTexture("src/img/2-2-space-free-png-image.png"));
+}
+
+void Back(int a)
+{
+    if(a < 30)
+    {
+        Rectangle Source;
+        Rectangle Destination;
+        Vector2 vct;
+
+        Source.height = 562;
+        Source.width = 1000;
+        Source.x = 0;
+        Source.y = 0;
+
+        Destination.height = 1080;
+        Destination.width = 1920;
+        Destination.x = 0;
+        Destination.y = 0;
+
+        DrawTexturePro(Img[0], Source, Destination, vct, 0.0f, LIGHTGRAY);
+    }
+
+    if(a < 70 && a >= 30)
+    {
+        Rectangle Source;
+        Rectangle Destination;
+        Vector2 vct;
+
+        Source.height = 448;
+        Source.width = 1280;
+        Source.x = 0;
+        Source.y = 0;
+
+        Destination.height = 1080;
+        Destination.width = 1920;
+        Destination.x = 0;
+        Destination.y = 0;
+
+        DrawTexturePro(Img[1], Source, Destination, vct, 0.0f, LIGHTGRAY);
+    }
+
+    if(a >= 70)
+    {
+        Rectangle Source;
+        Rectangle Destination;
+        Vector2 vct;
+
+        Source.height = 1000;
+        Source.width = 1500;
+        Source.x = 0;
+        Source.y = 0;
+
+        Destination.height = 1080;
+        Destination.width = 1920;
+        Destination.x = 0;
+        Destination.y = 0;
+
+        DrawTexturePro(Img[2], Source, Destination, vct, 0.0f, LIGHTGRAY);
+    }
+}
+
+void UnloadingTextures()
+{
+    UnloadTexture(Img[0]);
+    UnloadTexture(Img[1]);
+    UnloadTexture(Img[2]);
+}

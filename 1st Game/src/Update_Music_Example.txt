@@ -1,0 +1,88 @@
+#include "raylib.h"
+#include "raymath.h"
+
+#include <vector>
+#include <list>
+
+std::vector<Music> MusicTracks;
+int CurrentTrack = -1;
+
+int Score = 0;
+
+void GameInit()
+{
+	MusicTracks.push_back(LoadMusicStream("resources/track1.mp3"));	// default
+	MusicTracks.push_back(LoadMusicStream("resources/track2.mp3"));	// score from 10 to 29
+	MusicTracks.push_back(LoadMusicStream("resources/track3.mp3"));	// score >= 30
+}
+
+int GetCurrentMusicTrack( int score)
+{
+	if (score >= 10 && score < 30)
+		return 1;
+	if (score >= 30)
+		return 2;
+
+	return 0;
+}
+
+void UpdateMusic( int track )
+{
+	if (CurrentTrack < 0 || track != CurrentTrack)
+	{
+		if (CurrentTrack >= 0)
+			StopMusicStream(MusicTracks[CurrentTrack]);
+
+		if (track != -1)
+			PlayMusicStream(MusicTracks[track]);
+		CurrentTrack = track;
+	}
+	
+	if (CurrentTrack >= 0)
+		UpdateMusicStream(MusicTracks[CurrentTrack]);
+}
+
+bool GameUpdate()
+{
+	if (IsKeyPressed(KEY_UP))
+		Score++;
+
+	UpdateMusic(GetCurrentMusicTrack(Score));
+
+	return true;
+}
+
+void GameDraw()
+{
+	BeginDrawing();
+	ClearBackground(DARKGRAY);
+
+	DrawText(TextFormat("Score %d, Track %d", Score, CurrentTrack), 100, 100, 20, BLUE);
+	DrawFPS(0, 0);
+	EndDrawing();
+}
+
+int main()
+{
+	SetConfigFlags(FLAG_VSYNC_HINT);
+	InitWindow(1280, 800, "Example");
+	SetTargetFPS(144);
+
+	GameInit();
+
+	while (!WindowShouldClose())
+	{
+		if (!GameUpdate())
+			break;
+		
+		GameDraw();
+	}
+
+	UpdateMusic(-1);
+
+	for (const auto& music : MusicTracks)
+		UnloadMusicStream(music);
+
+	CloseWindow();
+	return 0;
+}
