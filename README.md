@@ -28,7 +28,7 @@ If you are interested in this library, join our discord server linked in the off
 
 - Saving progress in "spg.save"
 
-# Updates for the Version 1.5
+# Updates for the Version 2
 
 - Goddamn asteroids !
 
