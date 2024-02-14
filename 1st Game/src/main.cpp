@@ -1,11 +1,15 @@
 #include <raylib.h>
 #include <src/pong.h>
+#include <iostream>
+#include <fstream>
 #include <vector>
 #include <list>
+#include <src/date.h>
+#include <iostream>
 
-int place = 0, ground = 0;
+
+int place = 0, ground = 0, save = 0;
 int *p_place = &place, *p_grd = &ground;
-float scol_atm = 0.0f, scol_earth1 = 0.0f, scol_earth2 = 0.0f, scol_space = 0.0f;
 const char* name_music[] = {"Ouranos Island", "Tails Mvt", "Arrow of Time Remix", "Ultra Necrozma Remix", "Egg Reverie Remix"};
 const char* path_music[] = {"src/aud/Ouranos Island.mp3",
                             "src/aud/Tails Mvt.mp3",
@@ -14,7 +18,10 @@ const char* path_music[] = {"src/aud/Ouranos Island.mp3",
                             "src/aud/Egg Reverie Zone Remix.mp3"
                            };
 Ball ball = Ball();
+std::string player_name;
 Paddle paddle = Paddle();
+
+/*By JeffM, on the offical discord server */
 std::vector<Texture2D> Img;
 std::vector<Music> Playlist;
 Color black = Color{0, 0, 0, 255};
@@ -26,16 +33,18 @@ void music_init(void);
 void music_update(int a, int *track, int b);
 void framing(int f);
 void Begin(void);
+void name_recup(void);
+void saving(int a, int *b);
 
 int main()
 {
+    name_recup();
     InitWindow(screenWidth, screenHeight, "Stellar Ping Pong");
     ToggleFullscreen();
     SetTargetFPS(60);
     ShowCursor();
     InitAudioDevice();
     music_init();
-    Img_init();
     PlayMusicStream(Playlist[0]);
     Begin();
 
@@ -43,10 +52,10 @@ int main()
     {
         BeginDrawing();
         ClearBackground(black);
-        //Back(ball.stats());
         int frames = GetFPS();
         framing(frames);
         ball.Update(paddle.paddle);
+        saving(ball.stats(), &save);
         music_update(ball.stats(), p_place, place);
         ball.Draw();
         paddle.Update();
@@ -131,6 +140,12 @@ void framing(int f)
         DrawText(TextFormat("%d FPS", f), 20, 0, 20, GREEN);
 }
 
+void name_recup()
+{
+    std::cout << "Veuillez ecrire votre nom de joueur (50 caracteres maximum)\n=>";
+    std::getline(std::cin, player_name);
+}
+
 void Begin()
 {
     while(!IsKeyPressed(KEY_ENTER))
@@ -138,11 +153,11 @@ void Begin()
         UpdateMusicStream(Playlist[0]);
         BeginDrawing();
         ClearBackground(black);
-        DrawText("Stellar Ping Pong 1.4 - By n3izvn", 200, 100, 40, RED);
-        DrawText("Try to hit a score of 100 to win the game !!", 200, 160, 40, YELLOW);
+        DrawText("Stellar Pong Game v1.4 - by n3izvn", 200, 120, 40, RED);
+        DrawText("Try to hit a score of 100 to win the game !!", 200, 170, 30, YELLOW);
         DrawText("Use the UP and DOWN Arrow Keys to control the platform", 200, (screenHeight/2), 20, GREEN);
         DrawText("Press ENTER to play the game and press ESC to exit the game", 200, (screenHeight/2)+50, 20, PURPLE);
-        DrawText("Have fun i guess :) ", 200, (screenHeight/2)+100, 20, BLUE);
+        DrawText("Have fun i guess %s :) ", 200, (screenHeight/2)+100, 20, BLUE);
         paddle.Update();
         paddle.Draw();
 
@@ -155,6 +170,20 @@ void Begin()
         }
 
         EndDrawing();
+    }
+}
+
+void saving(int a, int *b)
+{
+    /*By Howard Hinnant, on stack overflow*/
+    if(a >= 100 && *b != 1)
+    {
+        using namespace date;
+        using namespace std::chrono;
+        std::ofstream demo1("spg.save");
+        demo1 << player_name << " won the game\nTime = " << system_clock::now() << std::endl;
+        demo1.close();
+        *b = 1;
     }
 }
 

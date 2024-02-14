@@ -1,7 +1,7 @@
 #include <src/pong.h>
 #include <iostream>
 
-int fontsize = 20, score = 0;
+int fontsize = 20, score = 90;
 int finish = 0, one = 0, two = 0, three = 0, four = 0;
 const char* p_res;
 
@@ -44,7 +44,7 @@ void Ball::Update(Rectangle a)
     }
     if(ball.x - radius <= 0)
     {
-        score = 0;
+        //score = 0;
         ball.x = screenWidth/2;
         ball.y = screenHeight/1.22;
         speedX = 7;
@@ -110,8 +110,8 @@ void Ball::Update(Rectangle a)
         {
             ball.x = screenWidth-100;
             ball.y = screenHeight-100;
-            speedX = 1.2;
-            speedY = 1.2;
+            speedX = 19;
+            speedY = 19;
             one = 0;
             two = 0;
             three = 0;
