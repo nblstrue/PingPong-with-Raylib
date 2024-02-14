@@ -157,7 +157,7 @@ void Begin()
         DrawText("Try to hit a score of 100 to win the game !!", 200, 170, 30, YELLOW);
         DrawText("Use the UP and DOWN Arrow Keys to control the platform", 200, (screenHeight/2), 20, GREEN);
         DrawText("Press ENTER to play the game and press ESC to exit the game", 200, (screenHeight/2)+50, 20, PURPLE);
-        DrawText("Have fun i guess %s :) ", 200, (screenHeight/2)+100, 20, BLUE);
+        DrawText("Have fun i guess :)", 200, (screenHeight/2)+100, 20, BLUE);
         paddle.Update();
         paddle.Draw();
 
