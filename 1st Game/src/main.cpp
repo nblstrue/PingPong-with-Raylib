@@ -8,7 +8,7 @@
 #include <iostream>
 
 
-int place = 0, ground = 0, save = 0;
+int place = 0, ground = 0, save = 0, shots = 0;
 int *p_place = &place, *p_grd = &ground;
 const char* name_music[] = {"Ouranos Island", "Tails Mvt", "Arrow of Time Remix", "Ultra Necrozma Remix", "Egg Reverie Remix"};
 const char* path_music[] = {"src/aud/Ouranos Island.mp3",
@@ -26,15 +26,13 @@ std::vector<Texture2D> Img;
 std::vector<Music> Playlist;
 Color black = Color{0, 0, 0, 255};
 
-void Img_init(void);
-void Back(int a);
-void UnloadingTextures(void);
 void music_init(void);
 void music_update(int a, int *track, int b);
 void framing(int f);
 void Begin(void);
 void name_recup(void);
 void saving(int a, int *b);
+void Shotscreen(void);
 
 int main()
 {
@@ -60,12 +58,30 @@ int main()
         ball.Draw();
         paddle.Update();
         paddle.Draw();
+        Shotscreen();
         EndDrawing();
     }
     
     CloseWindow();
     CloseAudioDevice();
     return 0;
+}
+
+void Shotscreen()
+{
+    if(IsKeyPressed(KEY_S) && IsKeyPressed(KEY_RIGHT_CONTROL))
+    {
+        TakeScreenshot(TextFormat("Screenshot_%d.png", shots));
+        shots++;
+    }
+    else
+    {
+        if(IsKeyPressed(KEY_S) && IsKeyPressed(KEY_LEFT_CONTROL))
+        {
+            TakeScreenshot(TextFormat("Screenshot_%d.png", shots));
+            shots++;
+        }
+    }
 }
 
 void music_init(void)
@@ -154,10 +170,11 @@ void Begin()
         BeginDrawing();
         ClearBackground(black);
         DrawText("Stellar Pong Game v1.4 - by n3izvn", 200, 120, 40, RED);
-        DrawText("Try to hit a score of 100 to win the game !!", 200, 170, 30, YELLOW);
-        DrawText("Use the UP and DOWN Arrow Keys to control the platform", 200, (screenHeight/2), 20, GREEN);
-        DrawText("Press ENTER to play the game and press ESC to exit the game", 200, (screenHeight/2)+50, 20, PURPLE);
-        DrawText("Have fun i guess :)", 200, (screenHeight/2)+100, 20, BLUE);
+        DrawText("Try to hit a score of 100 to win the game !!", 200, 170, 30, WHITE);
+        DrawText("Use the UP and DOWN Arrow Keys to control the platform", 200, (screenHeight/2), 20, YELLOW);
+        DrawText("Press ENTER to play the game and press ESC to exit the game", 200, (screenHeight/2)+50, 20, GREEN);
+        DrawText("You can take a screenshot in-game with CTRL Key + S Key", 200, (screenHeight/2)+100, 20, PURPLE);
+        DrawText("Have fun i guess :)", 200, (screenHeight/2)+150, 20, BLUE);
         paddle.Update();
         paddle.Draw();
 
@@ -181,83 +198,8 @@ void saving(int a, int *b)
         using namespace date;
         using namespace std::chrono;
         std::ofstream demo1("spg.save");
-        demo1 << player_name << " won the game\nTime = " << system_clock::now() << std::endl;
+        demo1 << player_name << " won the game\nTime = " << system_clock::now() << "\n\n";
         demo1.close();
         *b = 1;
     }
 }
-
-void Img_init()
-{
-    Img.push_back(LoadTexture("src/img/1e64c3289a248160c26a3b57b221e282.png"));
-    Img.push_back(LoadTexture("src/img/3CDxl1.png"));
-    Img.push_back(LoadTexture("src/img/2-2-space-free-png-image.png"));
-}
-
-void Back(int a)
-{
-    if(a < 30)
-    {
-        Rectangle Source;
-        Rectangle Destination;
-        Vector2 vct;
-
-        Source.height = 562;
-        Source.width = 1000;
-        Source.x = 0;
-        Source.y = 0;
-
-        Destination.height = 1080;
-        Destination.width = 1920;
-        Destination.x = 0;
-        Destination.y = 0;
-
-        DrawTexturePro(Img[0], Source, Destination, vct, 0.0f, LIGHTGRAY);
-    }
-
-    if(a < 70 && a >= 30)
-    {
-        Rectangle Source;
-        Rectangle Destination;
-        Vector2 vct;
-
-        Source.height = 448;
-        Source.width = 1280;
-        Source.x = 0;
-        Source.y = 0;
-
-        Destination.height = 1080;
-        Destination.width = 1920;
-        Destination.x = 0;
-        Destination.y = 0;
-
-        DrawTexturePro(Img[1], Source, Destination, vct, 0.0f, LIGHTGRAY);
-    }
-
-    if(a >= 70)
-    {
-        Rectangle Source;
-        Rectangle Destination;
-        Vector2 vct;
-
-        Source.height = 1000;
-        Source.width = 1500;
-        Source.x = 0;
-        Source.y = 0;
-
-        Destination.height = 1080;
-        Destination.width = 1920;
-        Destination.x = 0;
-        Destination.y = 0;
-
-        DrawTexturePro(Img[2], Source, Destination, vct, 0.0f, LIGHTGRAY);
-    }
-}
-
-void UnloadingTextures()
-{
-    UnloadTexture(Img[0]);
-    UnloadTexture(Img[1]);
-    UnloadTexture(Img[2]);
-}
-

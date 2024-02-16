@@ -31,6 +31,8 @@ void Ball::Update(Rectangle a)
     ball.y += speedY;
     p_res = TextFormat("Score = %d", score);
 
+    if(score < 0)
+        score = 0;
     if (ball.x + radius >= GetScreenWidth()){
         speedX *= -1;
     }
@@ -40,11 +42,11 @@ void Ball::Update(Rectangle a)
     if(CheckCollisionCircleRec(ball, radius, a))
     {
         speedX *= -1;
-        score+=10;
+        score+=2;
     }
-    if(ball.x - radius <= 0)
+    if(ball.x - radius <= 0 && score < 100)
     {
-        score = 0;
+        score -= 3;
         ball.x = screenWidth/2;
         ball.y = screenHeight/1.22;
         speedX = 7;

@@ -32,14 +32,3 @@ private:
     int speedX;
     int speedY;
 };
-
-class Asteroid
-{
-public:
-    Asteroid();
-    void Update(Rectangle a);
-    void Draw();
-    int speedX;
-private:
-    Vector2* obstacle = NULL;
-};
