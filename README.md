@@ -24,15 +24,13 @@ If you are interested in this library, join our discord server linked in the off
 - Changing backgrounds depending on the score
 - Starting window showing you how to control the platform
 
-# Version 1.6 (14th February 2024):
+# Version 2 (14th February 2024):
 
 - Saving progress in "spg.save"
+- score incrementation from 10 to 1
+- When the ball x = 0, the score decrementation is -3
+- My OC with my name during the game
 
-# Updates for the Version 2
+I think i will leave the game in this state. I'm kinda out of ideas, because the difficulty is hard enough, maybe too hard and the backgrounds add horrible lags. Even tough the save is a little bit rough, i'm happy with this project.
 
-- Goddamn asteroids !
-
-# Issues / Future changes
-
-- v1.3 = the background images could make your game run around 40 FPS, at least that's my case. Hope it's only for me. (not gonna be dealt with sadly...)
-- The incrementation of the score variable is too high for now. It's gonna be "score += 1", for the final version
+Next one is gonna be a platformer with a team that i will create (hopefully) and i will go beyond
