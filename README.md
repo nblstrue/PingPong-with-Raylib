@@ -30,7 +30,6 @@ If you are interested in this library, join our discord server linked in the off
 - Saving progress in "spg.save"
 - score incrementation from 10 to 1
 - When the ball x = 0, the score decrementation is -3
-- My OC with my name during the game
 
 I think i will leave the game in this state. I'm kinda out of ideas, because the difficulty is hard enough, maybe too hard and the backgrounds add horrible lags. Even tough the save is a little bit rough, i'm happy with this project.
 
