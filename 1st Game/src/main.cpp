@@ -17,14 +17,14 @@ const char* path_music[] = {"src/aud/Ouranos Island.mp3",
                             "src/aud/ULTRA_NECROZMA.mp3",
                             "src/aud/Egg Reverie Zone Remix.mp3"
                            };
-Ball ball = Ball();
-std::string player_name;
-Paddle paddle = Paddle();
 
 /*By JeffM, on the offical discord server */
 std::vector<Texture2D> Img;
 std::vector<Music> Playlist;
 Color black = Color{0, 0, 0, 255};
+Ball ball = Ball();
+std::string player_name;
+Paddle paddle = Paddle();
 
 void music_init(void);
 void music_update(int a, int *track, int b);
@@ -69,14 +69,14 @@ int main()
 
 void Shotscreen()
 {
-    if(IsKeyPressed(KEY_S) && IsKeyPressed(KEY_RIGHT_CONTROL))
+    if(IsKeyDown(KEY_S) && IsKeyDown(KEY_RIGHT_CONTROL))
     {
         TakeScreenshot(TextFormat("Screenshot_%d.png", shots));
         shots++;
     }
     else
     {
-        if(IsKeyPressed(KEY_S) && IsKeyPressed(KEY_LEFT_CONTROL))
+        if(IsKeyDown(KEY_S) && IsKeyDown(KEY_LEFT_CONTROL))
         {
             TakeScreenshot(TextFormat("Screenshot_%d.png", shots));
             shots++;
