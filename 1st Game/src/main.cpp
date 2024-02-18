@@ -49,7 +49,6 @@ int main()
     {
         BeginDrawing();
         ClearBackground(black);
-        Shotscreen();
         int frames = GetFPS();
         framing(frames);
         ball.Update(paddle.paddle);
@@ -58,6 +57,7 @@ int main()
         ball.Draw();
         paddle.Update();
         paddle.Draw();
+        Shotscreen();
         EndDrawing();
     }
     
