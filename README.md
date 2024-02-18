@@ -4,7 +4,7 @@ A simple game of ping pong in space (actually that makes no sense but whatever).
 
 You can find the code itself in the folder "1st Game", or the game itself with songs in the folder "Stellar Pong Game".
 
-# To be able to play this game, you need:
+## To be able to play this game, you need:
 - RayLib 5.0 (in the C:/ disk) ; ( https://www.raylib.com )
 - Visual Studio Code (to change the code or see what it looks like) with the C/C++ extension ;
 ( https://code.visualstudio.com )
@@ -14,18 +14,18 @@ The configuration to make Raylib 5.0 work with VS Code is already done in the fo
 
 If you are interested in this library, join our discord server linked in the official site.
 
-# Version 1.2 (Mid January 2024): 
+### Version 1.2 (Mid January 2024): 
 
 - Game ends with a text saying that you beat the game (obtainable with a score of 40)
 - My name on the top right corner :)
 
-# Version 1.5 (10th February 2024):
+### Version 1.5 (10th February 2024):
 
 - Changing musics depending on the score (no way ?!)
 - Changing backgrounds depending on the score
 - Starting window showing you how to control the platform
 
-# Version 1.8 (14th February 2024):
+### Version 1.8 (14th February 2024):
 
 - Saving progress in "spg.save"
 - score incrementation from 10 to 2
