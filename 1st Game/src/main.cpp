@@ -5,7 +5,6 @@
 #include <vector>
 #include <list>
 #include <src/date.h>
-#include <iostream>
 
 
 int place = 0, ground = 0, save = 0, shots = 0;
@@ -40,7 +39,7 @@ int main()
     InitWindow(screenWidth, screenHeight, "Stellar Ping Pong");
     ToggleFullscreen();
     SetTargetFPS(60);
-    ShowCursor();
+    HideCursor();
     InitAudioDevice();
     music_init();
     PlayMusicStream(Playlist[0]);
@@ -50,6 +49,7 @@ int main()
     {
         BeginDrawing();
         ClearBackground(black);
+        Shotscreen();
         int frames = GetFPS();
         framing(frames);
         ball.Update(paddle.paddle);
@@ -58,7 +58,6 @@ int main()
         ball.Draw();
         paddle.Update();
         paddle.Draw();
-        Shotscreen();
         EndDrawing();
     }
     
@@ -177,6 +176,7 @@ void Begin()
         DrawText("Have fun i guess :)", 200, (screenHeight/2)+150, 20, BLUE);
         paddle.Update();
         paddle.Draw();
+        Shotscreen();
 
         if(IsKeyPressed(KEY_ESCAPE))
         {

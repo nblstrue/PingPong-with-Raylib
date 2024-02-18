@@ -1,7 +1,7 @@
 #include <src/pong.h>
 #include <iostream>
 
-int fontsize = 20, score = 0;
+int fontsize = 20, score;
 int finish = 0, one = 0, two = 0, three = 0, four = 0;
 const char* p_res;
 
