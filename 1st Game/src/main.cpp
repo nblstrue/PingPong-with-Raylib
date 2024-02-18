@@ -9,13 +9,6 @@
 
 int place = 0, ground = 0, save = 0, shots = 0;
 int *p_place = &place, *p_grd = &ground;
-const char* name_music[] = {"Ouranos Island", "Tails Mvt", "Arrow of Time Remix", "Ultra Necrozma Remix", "Egg Reverie Remix"};
-const char* path_music[] = {"src/aud/Ouranos Island.mp3",
-                            "src/aud/Tails Mvt.mp3",
-                            "src/aud/Arrow_of_Time_Remix.mp3",
-                            "src/aud/ULTRA_NECROZMA.mp3",
-                            "src/aud/Egg Reverie Zone Remix.mp3"
-                           };
 
 /*By JeffM, on the offical discord server */
 std::vector<Texture2D> Img;
@@ -27,7 +20,7 @@ Paddle paddle = Paddle();
 
 void music_init(void);
 void music_update(int a, int *track, int b);
-void framing(int f);
+void framing(void);
 void Begin(void);
 void name_recup(void);
 void saving(int a, int *b);
@@ -49,16 +42,15 @@ int main()
     {
         BeginDrawing();
         ClearBackground(black);
-        int frames = GetFPS();
-        framing(frames);
+        framing();
         ball.Update(paddle.paddle);
         saving(ball.stats(), &save);
         music_update(ball.stats(), p_place, place);
         ball.Draw();
         paddle.Update();
         paddle.Draw();
-        Shotscreen();
         EndDrawing();
+        Shotscreen();
     }
     
     CloseWindow();
@@ -85,6 +77,13 @@ void Shotscreen()
 
 void music_init(void)
 {
+    const char* path_music[] = {"src/aud/Ouranos Island.mp3",
+                                "src/aud/Tails Mvt.mp3",
+                                "src/aud/Arrow_of_Time_Remix.mp3",
+                                "src/aud/ULTRA_NECROZMA.mp3",
+                                "src/aud/Egg Reverie Zone Remix.mp3"
+                                };
+        
     Playlist.push_back(LoadMusicStream(path_music[0]));
     Playlist.push_back(LoadMusicStream(path_music[1]));
     Playlist.push_back(LoadMusicStream(path_music[2]));
@@ -94,6 +93,8 @@ void music_init(void)
 
 void music_update(int a, int *track, int b)
 {
+    const char* name_music[] = {"Ouranos Island", "Tails Mvt", "Arrow of Time Remix", "Ultra Necrozma Remix", "Egg Reverie Remix"};
+
     if(a == 0 && *track != 0)
     {
         StopMusicStream(Playlist[*track]);
@@ -143,8 +144,10 @@ void music_update(int a, int *track, int b)
     }
 }
 
-void framing(int f)
+void framing()
 {
+    int f = GetFPS();
+
     if(f < 20)
         DrawText(TextFormat("%d FPS", f), 20, 0, 20, RED);
 
@@ -176,7 +179,6 @@ void Begin()
         DrawText("Have fun i guess :)", 200, (screenHeight/2)+150, 20, BLUE);
         paddle.Update();
         paddle.Draw();
-        Shotscreen();
 
         if(IsKeyPressed(KEY_ESCAPE))
         {
@@ -187,6 +189,7 @@ void Begin()
         }
 
         EndDrawing();
+        Shotscreen();
     }
 }
 
