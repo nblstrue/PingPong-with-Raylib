@@ -38,7 +38,7 @@ If you are interested in this library, join our discord server linked in the off
 ### Update 1.0 (1st of March 2024)
 
 - Bug n°1 = When score decrement to 10, when it was above 10, score reset to 0 (problem is the (score < 10) if condition)
-- Issue n°1 = The music function i conditions were not optimal
+- Issue n°1 = The music function if conditions were not optimal
 
 I think i will leave the game in this state. I'm kinda out of ideas, because the difficulty is hard enough, maybe too hard and the backgrounds add horrible lags. Even tough the save is a little bit rough, i'm happy with this project.
 
