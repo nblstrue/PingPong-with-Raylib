@@ -6,32 +6,29 @@
 #include <list>
 #include <src/date.h>
 
-
-int place = 0, ground = 0, save = 0, shots = 0;
-int *p_place = &place, *p_grd = &ground;
+int place = 0, ground = 0, save = 0, shots = 0, *p_place = &place, *p_grd = &ground;
 
 /*By JeffM, on the offical discord server */
-std::vector<Texture2D> Img;
-std::vector<Music> Playlist;
-Color black = Color{0, 0, 0, 255};
 Ball ball = Ball();
 std::string player_name;
 Paddle paddle = Paddle();
+std::vector<Texture2D> Img;
+std::vector<Music> Playlist;
+Color black = Color{0, 0, 0, 255};
 
-void music_init(void);
-void music_update(int a, int *track, int b);
-void framing(void);
 void Begin(void);
+void framing(void);
+void music_init(void);
 void name_recup(void);
-void saving(int a, int *b);
 void Shotscreen(void);
+void Fullscreen(void);
+void saving(int a, int *b);
+void music_update(int a, int *track, int b);
 
 int main()
 {
     name_recup();
     InitWindow(screenWidth, screenHeight, "Stellar Ping Pong");
-    ToggleFullscreen();
-    SetTargetFPS(60);
     HideCursor();
     InitAudioDevice();
     music_init();
@@ -60,29 +57,23 @@ int main()
 
 void Shotscreen()
 {
-    if(IsKeyDown(KEY_S) && IsKeyDown(KEY_RIGHT_CONTROL))
+    if(IsKeyDown(KEY_S) && (IsKeyDown(KEY_RIGHT_CONTROL) || IsKeyDown(KEY_LEFT_CONTROL)))
     {
         TakeScreenshot(TextFormat("Screenshot_%d.png", shots));
         shots++;
-    }
-    else
-    {
-        if(IsKeyDown(KEY_S) && IsKeyDown(KEY_LEFT_CONTROL))
-        {
-            TakeScreenshot(TextFormat("Screenshot_%d.png", shots));
-            shots++;
-        }
     }
 }
 
 void music_init(void)
 {
-    const char* path_music[] = {"src/aud/Ouranos Island.mp3",
-                                "src/aud/Tails Mvt.mp3",
-                                "src/aud/Arrow_of_Time_Remix.mp3",
-                                "src/aud/ULTRA_NECROZMA.mp3",
-                                "src/aud/Egg Reverie Zone Remix.mp3"
-                                };
+    const char* path_music[] =
+    {
+        "src/aud/Ouranos Island.mp3",
+        "src/aud/Tails Mvt.mp3",
+        "src/aud/Arrow_of_Time_Remix.mp3",
+        "src/aud/ULTRA_NECROZMA.mp3",
+        "src/aud/Egg Reverie Zone Remix.mp3"
+    };
         
     Playlist.push_back(LoadMusicStream(path_music[0]));
     Playlist.push_back(LoadMusicStream(path_music[1]));

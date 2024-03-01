@@ -117,7 +117,7 @@ Paddle::Paddle()
 {
     paddle.height = 100; paddle.width = 10;
     paddle.x = 0; paddle.y = 0;
-    speedX = 7; speedY = 7;
+    speedX = 10; speedY = 10;
     color = Color{255, 255, 0, 255};
 }
 
@@ -134,7 +134,7 @@ void Paddle::Update()
     }
     if(score == 0)
     {
-        speedX = 7; speedY = 7;
+        speedX = 10; speedY = 10;
     }
 
     if(IsKeyDown(KEY_DOWN))
