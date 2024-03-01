@@ -31,6 +31,10 @@ If you are interested in this library, join our discord server linked in the off
 - score incrementation from 10 to 2
 - Screenshots possible with  CTRL_Key + S_Key
 
+### Update 1.0 (1st of March 2024)
+
+- Bug n°1 = When score decrement to 10, when it was above 10, score reset to 0
+
 I think i will leave the game in this state. I'm kinda out of ideas, because the difficulty is hard enough, maybe too hard and the backgrounds add horrible lags. Even tough the save is a little bit rough, i'm happy with this project.
 
 Next one is gonna be a platformer with a team that i will create (hopefully) and i will go beyond
