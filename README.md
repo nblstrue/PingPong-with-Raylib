@@ -31,7 +31,7 @@ If you are interested in this library, join our discord server linked in the off
 - score incrementation from 10 to 2
 - Screenshots possible with  CTRL_Key + S_Key
 
-### Version 1.8.5
+### Version 1.8.5 (1st of March 2024)
 
 - Two starting window showing you the objective and how to control the platform
 
