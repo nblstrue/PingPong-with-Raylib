@@ -2,8 +2,8 @@
 #include <raylib.h>
 #include <iostream>
 
-int screenWidth = 1900;
-int screenHeight = 900;
+const int screenWidth = 1900;
+const int screenHeight = 1050;
 
 class Paddle
 {

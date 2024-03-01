@@ -21,7 +21,6 @@ void framing(void);
 void music_init(void);
 void name_recup(void);
 void Shotscreen(void);
-void Fullscreen(void);
 void saving(int a, int *b);
 void music_update(int a, int *track, int b);
 
@@ -86,7 +85,7 @@ void music_update(int a, int *track, int b)
 {
     const char* name_music[] = {"Ouranos Island", "Tails Mvt", "Arrow of Time Remix", "Ultra Necrozma Remix", "Egg Reverie Remix"};
 
-    if(a == 0 && *track != 0)
+    if(a < 10 && *track != 0)
     {
         StopMusicStream(Playlist[*track]);
         PlayMusicStream(Playlist[0]);
@@ -94,7 +93,7 @@ void music_update(int a, int *track, int b)
     }
     else
     {
-        if(a == 10 && *track != 1)
+        if(a >= 10 && a < 30 && *track != 1)
         {
             StopMusicStream(Playlist[*track]);
             PlayMusicStream(Playlist[1]);
@@ -102,7 +101,7 @@ void music_update(int a, int *track, int b)
         }
         else
         {
-            if(a == 30 && *track != 2)
+            if(a >= 30 && a < 70 && *track != 2)
             {
                 StopMusicStream(Playlist[*track]);
                 PlayMusicStream(Playlist[2]);
@@ -110,7 +109,7 @@ void music_update(int a, int *track, int b)
             }
             else
             {
-                if(a == 70 && *track != 3)
+                if(a >= 70 && a < 100 && *track != 3)
                 {
                     StopMusicStream(Playlist[*track]);
                     PlayMusicStream(Playlist[3]);
@@ -118,7 +117,7 @@ void music_update(int a, int *track, int b)
                 }
                 else
                 {
-                    if(a == 100 && *track != 4)
+                    if(a >= 100 && *track != 4)
                     {
                         StopMusicStream(Playlist[*track]);
                         PlayMusicStream(Playlist[4]);
@@ -164,9 +163,27 @@ void Begin()
         ClearBackground(black);
         DrawText("Stellar Pong Game v1.4 - by n3izvn", 200, 120, 40, RED);
         DrawText("Try to hit a score of 100 to win the game !!", 200, 170, 30, WHITE);
-        DrawText("Use the UP and DOWN Arrow Keys to control the platform", 200, (screenHeight/2), 20, YELLOW);
-        DrawText("Press ENTER to play the game and press ESC to exit the game", 200, (screenHeight/2)+50, 20, GREEN);
-        DrawText("You can take a screenshot in-game with CTRL Key + S Key", 200, (screenHeight/2)+100, 20, PURPLE);
+        DrawText("Press ENTER to get the controls of the game", 200, (screenHeight/2)+50, 20, GREEN);
+
+        if(IsKeyPressed(KEY_ESCAPE))
+        {
+            EndDrawing();
+            CloseWindow();
+            CloseAudioDevice();
+            exit(0);
+        }
+
+        EndDrawing();
+    }
+
+    while(!IsKeyPressed(KEY_G))
+    {
+        UpdateMusicStream(Playlist[0]);
+        BeginDrawing();
+        ClearBackground(black);
+        DrawText("Stellar Pong Game v1.8.5 - by n3izvn", 200, 120, 40, RED);
+        DrawText("Press the G Key to play the game or press ESC to exit the game", 200, (screenHeight/2), 20, GREEN);
+        DrawText("You can take a screenshot in-game with CTRL Key + S Key", 200, (screenHeight/2)+50, 20, PURPLE);
         DrawText("Have fun i guess :)", 200, (screenHeight/2)+150, 20, BLUE);
         paddle.Update();
         paddle.Draw();

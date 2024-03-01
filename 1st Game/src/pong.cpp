@@ -42,8 +42,8 @@ void Ball::Update(Rectangle a)
         score -= 3;
         ball.x = screenWidth/2;
         ball.y = screenHeight/1.22;
-        speedX = 7; speedY = 7;
-        one = 0; two = 0; three = 0; four = 0; finish = 0;
+        if(score == 0)
+            one = 0;
     }
     if(score < 10)
     {
@@ -52,7 +52,7 @@ void Ball::Update(Rectangle a)
             ball.x = screenWidth/2;
             ball.y = screenHeight/2;
             speedX = 10; speedY = 10;
-            one = 1; two = 0; three = 0; four = 0; score = 0;
+            one = 1; two = 0; three = 0; four = 0;
         }
         DrawText(difficulty1, (screenWidth/2)-100, 0, fontsize, GREEN);
         DrawText(p_res, (screenWidth/2)-80, 25, fontsize, BEIGE);
