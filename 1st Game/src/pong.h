@@ -3,7 +3,7 @@
 #include <iostream>
 
 const int screenWidth = 1900;
-const int screenHeight = 1050;
+const int screenHeight = 1000;
 
 class Paddle
 {
