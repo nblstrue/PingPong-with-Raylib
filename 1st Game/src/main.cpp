@@ -161,9 +161,9 @@ void Begin()
         UpdateMusicStream(Playlist[0]);
         BeginDrawing();
         ClearBackground(black);
-        DrawText("Stellar Pong Game v1.4 - by n3izvn", 200, 120, 40, RED);
-        DrawText("Try to hit a score of 100 to win the game !!", 200, 170, 30, WHITE);
-        DrawText("Press ENTER to get the controls of the game", 200, (screenHeight/2)+50, 20, GREEN);
+        DrawText("Stellar Pong Game v1.8.5 - by n3izvn", 200, 120, 40, RED);
+        DrawText("Try to hit a score of 100 to win the game !!", 200, 200, 30, WHITE);
+        DrawText("Press ENTER to get the controls of the game", 200, (screenHeight/2)+50, 20, SKYBLUE);
 
         if(IsKeyPressed(KEY_ESCAPE))
         {
