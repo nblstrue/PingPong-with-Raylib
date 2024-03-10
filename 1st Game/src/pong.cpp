@@ -1,13 +1,13 @@
 #include <src/pong.h>
 #include <iostream>
 
-int fontsize = 20, score = 0, finish = 0, one = 0, two = 0, three = 0, four = 0;
-const char* p_res;
+const char *p_res;
+int score = 0;
 
 Ball::Ball()
 {
     ball.x = screenWidth/2; ball.y = screenHeight/2;
-    speedX = 7; speedY = 7;
+    speedX = 9; speedY = 9;
     radius = 10;
     color = Color{255, 255, 0, 255};
 }
@@ -17,15 +17,23 @@ int Ball::stats()
     return score;
 }
 
+void Ball::reLoading()
+{
+    if(IsKeyPressed(KEY_R))
+    {
+        ball.x = screenWidth-50;
+        ball.y = screenHeight-50;
+    }
+}
+
 void Ball::Update(Rectangle a)
 {
     const char difficulty1[] = "Difficulty = Easy", difficulty2[] = "Difficulty = Medium", difficulty3[] = "Difficulty = Hard", difficulty4[] = "Difficulty = Impossible";
+    static int finish = 0, one = 0, two = 0, three = 0, four = 0, fontsize = 20;
 
     ball.x += speedX; ball.y += speedY;
     p_res = TextFormat("Score = %d", score);
 
-    if(score < 0)
-        score = 0;
     if (ball.x + radius >= GetScreenWidth()){
         speedX *= -1;
     }
@@ -35,13 +43,14 @@ void Ball::Update(Rectangle a)
     if(CheckCollisionCircleRec(ball, radius, a))
     {
         speedX *= -1;
-        score+=2;
+        score+=10;
     }
     if(ball.x - radius <= 0)
     {
-        score -= 3;
-        ball.x = screenWidth/2;
-        ball.y = screenHeight/1.22;
+        speedX *= -1;
+        //score -= 2;
+        if(score < 0)
+            score = 0;
         if(score == 0)
             one = 0;
     }
@@ -49,9 +58,7 @@ void Ball::Update(Rectangle a)
     {
         if(one == 0)
         {
-            ball.x = screenWidth/2;
-            ball.y = screenHeight/2;
-            speedX = 10; speedY = 10;
+            speedX = 12; speedY = 12;
             one = 1; two = 0; three = 0; four = 0;
         }
         DrawText(difficulty1, (screenWidth/2)-100, 0, fontsize, GREEN);
@@ -61,9 +68,7 @@ void Ball::Update(Rectangle a)
     {
         if(two == 0)
         {
-            ball.x = 300;
-            ball.y = screenHeight/2;
-            speedX = 13; speedY = 13;
+            speedX = 15; speedY = 15;
             one = 0; two = 1; three = 0; four = 0;
         }
         DrawText(difficulty2, (screenWidth/2)-110, 0, fontsize, YELLOW);
@@ -73,9 +78,7 @@ void Ball::Update(Rectangle a)
     {
         if(three == 0)
         {
-            ball.x = screenWidth/2;
-            ball.y = 30;
-            speedX = 16; speedY = 16;
+            speedX = 18; speedY = 18;
             one = 0; two = 0; three = 1; four = 0;
         }
         DrawText(difficulty3, (screenWidth/2)-100, 0, fontsize, RED);
@@ -85,9 +88,7 @@ void Ball::Update(Rectangle a)
     {
         if(four == 0)
         {
-            ball.x = screenWidth-100;
-            ball.y = screenHeight-100;
-            speedX = 19; speedY = 19;
+            speedX = 21; speedY = 21;
             one = 0; two = 0; three = 0; four = 1;
         }
         DrawText(difficulty4, (screenWidth/2)-140, 0, fontsize, MAGENTA);
@@ -97,8 +98,6 @@ void Ball::Update(Rectangle a)
     {
         if(finish == 0)
         {
-            ball.x = screenWidth/2;
-            ball.y = screenHeight/2;
             one = 0; two = 0; three = 0; four = 0; finish = 1;
             speedX = 7; speedY = 7;
         }
@@ -110,6 +109,7 @@ void Ball::Update(Rectangle a)
 
 void Ball::Draw()
 {
+    reLoading();
     DrawCircle(ball.x, ball.y, radius, color);
 }
 
@@ -130,9 +130,13 @@ void Paddle::Update()
 {
     if(score == 70)
     {
+        speedX = 28; speedY = 28;
+    }
+    if(score == 30)
+    {
         speedX = 14; speedY = 14;
     }
-    if(score == 0)
+    if(score == 0 || score >= 100)
     {
         speedX = 10; speedY = 10;
     }
@@ -142,7 +146,6 @@ void Paddle::Update()
         paddle.y += speedY;
         if(paddle.y >= (screenHeight - 100))
             paddle.y = (screenHeight - 100);
-
     }
     else
     {

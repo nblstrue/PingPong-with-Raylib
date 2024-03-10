@@ -6,17 +6,15 @@
 #include <list>
 #include <src/date.h>
 
-int place = 0, ground = 0, save = 0, shots = 0, *p_place = &place, *p_grd = &ground;
-
 /*By JeffM, on the offical discord server */
 Ball ball = Ball();
 std::string player_name;
 Paddle paddle = Paddle();
-std::vector<Texture2D> Img;
 std::vector<Music> Playlist;
-Color black = Color{0, 0, 0, 255};
+Color backColor = Color{0, 0, 0, 0};
 
 void Begin(void);
+void Reload(void);
 void framing(void);
 void music_init(void);
 void name_recup(void);
@@ -26,6 +24,8 @@ void music_update(int a, int *track, int b);
 
 int main()
 {
+    static int place = 0, save = 0, *p_place = &place;
+
     name_recup();
     InitWindow(screenWidth, screenHeight, "Stellar Ping Pong");
     HideCursor();
@@ -37,7 +37,7 @@ int main()
     while (!WindowShouldClose())
     {
         BeginDrawing();
-        ClearBackground(black);
+        ClearBackground(backColor);
         framing();
         ball.Update(paddle.paddle);
         saving(ball.stats(), &save);
@@ -56,6 +56,8 @@ int main()
 
 void Shotscreen()
 {
+    static int shots = 0;
+    
     if(IsKeyDown(KEY_S) && (IsKeyDown(KEY_RIGHT_CONTROL) || IsKeyDown(KEY_LEFT_CONTROL)))
     {
         TakeScreenshot(TextFormat("Screenshot_%d.png", shots));
@@ -160,10 +162,10 @@ void Begin()
     {
         UpdateMusicStream(Playlist[0]);
         BeginDrawing();
-        ClearBackground(black);
+        ClearBackground(backColor);
         DrawText("Stellar Pong Game v1.8.5 - by n3izvn", 200, 120, 40, RED);
         DrawText("Try to hit a score of 100 to win the game !!", 200, 200, 30, WHITE);
-        DrawText("Press ENTER to get the controls of the game", 200, (screenHeight/2)+50, 20, SKYBLUE);
+        DrawText("Press ENTER to get the controls of the game", 200, (screenHeight/2)+50, 20, YELLOW);
 
         if(IsKeyPressed(KEY_ESCAPE))
         {
@@ -180,11 +182,13 @@ void Begin()
     {
         UpdateMusicStream(Playlist[0]);
         BeginDrawing();
-        ClearBackground(black);
+        ClearBackground(backColor);
         DrawText("Stellar Pong Game v1.8.5 - by n3izvn", 200, 120, 40, RED);
-        DrawText("Press the G Key to play the game or press ESC to exit the game", 200, (screenHeight/2), 20, GREEN);
-        DrawText("You can take a screenshot in-game with CTRL Key + S Key", 200, (screenHeight/2)+50, 20, PURPLE);
-        DrawText("Have fun i guess :)", 200, (screenHeight/2)+150, 20, BLUE);
+        DrawText("Press the G Key to play the game or press ESC to exit the game", 200, (screenHeight/2), 20, ORANGE);
+        DrawText("You can take a screenshot in-game with CTRL Key + S Key", 200, (screenHeight/2)+50, 20, YELLOW);
+        DrawText("The game will get unfairly harder and harder with banger music", 200, (screenHeight/2)+100, 20, GREEN);
+        DrawText("If there is a issue, press the R Key to reload the game", 200, (screenHeight/2)+150, 20, PURPLE);
+        DrawText("Have fun i guess :)", 200, (screenHeight/2)+200, 20, BLUE);
         paddle.Update();
         paddle.Draw();
 
