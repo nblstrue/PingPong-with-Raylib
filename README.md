@@ -35,10 +35,11 @@ If you are interested in this library, join our discord server linked in the off
 
 - Two starting window showing you the objective and how to control the platform
 
-### Update 1.0 (1st of March 2024)
+### Update 1.0 (10th of March 2024)
 
 - Bug n°1 = When score decrement to 10, when it was above 10, score reset to 0 (problem is the (score < 10) if condition)
 - Issue n°1 = The music function if conditions were not optimal
+- Bug n°2 = The ball could be stuck at the limit of the Window. Added a simple function to reload the ball's positions
 
 I think i will leave the game in this state. I'm kinda out of ideas, because the difficulty is hard enough, maybe too hard and the backgrounds add horrible lags. Even tough the save is a little bit rough, i'm happy with this project.
 
