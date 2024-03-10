@@ -16,31 +16,36 @@ If you are interested in this library, join our discord server linked in the off
 
 ### Version 1.2 (Mid January 2024): 
 
-- Game ends with a text saying that you beat the game (obtainable with a score of 40)
-- My name on the top right corner :)
+- Game ends with a text saying that you beat the game (obtainable with a score of 40) ;
+- My name on the top right corner :) .
 
 ### Version 1.5 (10th February 2024):
 
-- Changing musics depending on the score (no way ?!)
-- Changing backgrounds depending on the score
-- Starting window showing you how to control the platform
+- Changing musics depending on the score (no way ?!) ;
+- Changing backgrounds depending on the score ;
+- Starting window showing you how to control the platform .
 
 ### Version 1.8 (14th February 2024):
 
-- Saving progress in "spg.save"
-- score incrementation from 10 to 2
-- Screenshots possible with  CTRL_Key + S_Key
+- Saving progress in "spg.save" ;
+- score incrementation from 10 to 2 ;
+- Screenshots possible with  CTRL_Key + S_Key .
 
 ### Version 1.8.5 (1st of March 2024)
 
-- Two starting window showing you the objective and how to control the platform
+- Two starting window showing you the objective and how to control the platform .
 
 ### Update 1.0 (10th of March 2024)
 
-- Bug n°1 = When score decrement to 10, when it was above 10, score reset to 0 (problem is the (score < 10) if condition)
-- Issue n°1 = The music function if conditions were not optimal
-- Bug n°2 = The ball could be stuck at the limit of the Window. Added a simple function to reload the ball's positions
+- Bug n°1 = When score decrement to 10, when it was above 10, score reset to 0 (problem is the (score < 10) if condition) ;
+- Issue n°1 = The music function if conditions were not optimal ;
+- Bug n°2 = The ball could be stuck at the limit of the Window. Added a simple function to reload the ball's positions .
 
-I think i will leave the game in this state. I'm kinda out of ideas, because the difficulty is hard enough, maybe too hard and the backgrounds add horrible lags. Even tough the save is a little bit rough, i'm happy with this project.
+### What will happen in the Future ?
 
-Next one is gonna be a platformer with a team that i will create (hopefully) and i will go beyond
+This game is going to have a sequel: Stellar Pong Game 2. It will be build on this game and upgraded to the M.A.X :
+
+- It will be much more colorful ;
+- Changing textures that actually WORKS and doesn't bring lots of lag ;
+- A better score and saving system ;
+- Much mroe things that i will think about during the developpement .
